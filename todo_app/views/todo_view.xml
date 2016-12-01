@@ -65,6 +65,7 @@
         <menuitem 
             id="menu_todo_task"
             name="To-Do Tasks"
+            web_icon="todo_app,static/description/icon.png"
             parent="mail.mail_feeds"
             sequence="20"
             action="action_todo_task" 
