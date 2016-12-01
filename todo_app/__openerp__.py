@@ -5,7 +5,7 @@
     'name': 'To-Do Application',
     'category': 'Test',
     'summary': 'Todo-Application',
-    'version': '6.1.4',
+    'version': '6.1.5',
     'website': 'www.elico-corp.com',
     'author': 'Frank Song',
     'depends': [
