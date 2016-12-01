@@ -5,7 +5,7 @@
     'name': 'To-Do Application',
     'category': 'Test',
     'summary': 'Todo-Application',
-    'version': '6.1.8',
+    'version': '6.1.9',
     'website': 'www.elico-corp.com',
     'author': 'Frank Song',
     'depends': [
@@ -15,6 +15,7 @@
     'data': [
         'views/todo_view.xml',
         'security/ir.model.access.csv',
+        'security/todo_access_rules.xml',
     ],
     'images': [],
     'license': 'AGPL-3',
