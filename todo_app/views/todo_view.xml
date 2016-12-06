@@ -66,7 +66,7 @@
             id="menu_todo_task"
             name="To-Do Tasks"
             web_icon="todo_app,static/description/icon.png"
-            parent="mail.mail_feeds"
+            parent="mail.mail_channel_menu_root_chat"
             sequence="20"
             action="action_todo_task" 
         />
