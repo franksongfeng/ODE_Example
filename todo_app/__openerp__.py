@@ -4,8 +4,8 @@
 {
     'name': 'To-Do Application',
     'category': 'Test',
-    'summary': 'Todo-Application',
-    'version': '6.1.11',
+    'summary': 'Example in the book ODE',
+    'version': '9.0.1.0.0',
     'website': 'www.elico-corp.com',
     'author': 'Frank Song',
     'depends': [
