@@ -6,7 +6,7 @@
     'description': 'Extend the To-Do app to multiusesr.',
     'category': 'Test',
     'summary': 'Example in the book ODE',
-    'version': '9.0.1.0.3',
+    'version': '9.0.1.0.4',
     'website': 'www.elico-corp.com',
     'author': 'Frank Song',
     'depends': [
@@ -15,6 +15,7 @@
     'data': [
         'views/todo_view.xml',
         'security/todo_access_rules.xml',
+        'data/todo_data.xml',
     ],
     'application': True,
     'installable': True,
