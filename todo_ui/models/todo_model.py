@@ -13,8 +13,24 @@ class Tag(models.Model):
 class Stage(models.Model):
     _name = 'todo.task.stage'
     _order = 'sequence, name'
-    _rec_name = 'name'  # the default
-    _table = 'todo_task_stage'  # the default
 
+    # String fields:
     name = fields.Char(string='Name', size=40, translate=True)
+    desc = fields.Text(string='Description')
+    state = fields.Selection(
+        [('draft', 'New'), ('open', 'Started'), ('done', 'Closed')],
+        'State',
+        default='draft')
+    docs = fields.Html(string='Documentation')
+
+    # Numeric fields:
     sequence = fields.Integer(string='Sequence')
+    perc_complete = fields.Float(string='% Complete', (3, 2))  # float precision - (total, decimals)
+
+    #Date fields:
+    date_effective = fields.Date(string='Effective Date')
+    date_changed = fields.Date(string='Last Changed')
+
+    #Other fields:
+    fold = fields.Boolean(string='Folded?')
+    image = fields.Binary(string='Image')
