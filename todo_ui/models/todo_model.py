@@ -38,6 +38,12 @@ class Stage(models.Model):
     fold = fields.Boolean(string='Folded?')
     image = fields.Binary(string='Image')
 
+    # Stage class relateion with Tasks:
+    tasks = fields.One2many(
+        comodel_name='todo.task', #related model
+        inverse_name='stage_id',  #field for "this" on related model
+        string='Tasks in this stage')
+
 
 class TodoTask(models.Model):
     _inherit = 'todo.task'
