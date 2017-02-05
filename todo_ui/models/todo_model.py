@@ -8,6 +8,9 @@ class Tag(models.Model):
     _name = 'todo.task.tag'
 
     name = fields.Char(string='Name', size=40, tanslate=True)
+    task_ids = fields.Many2many(
+        comodel_name='todo.task',
+        string='Tasks')
 
 
 class Stage(models.Model):
@@ -25,7 +28,7 @@ class Stage(models.Model):
 
     # Numeric fields:
     sequence = fields.Integer(string='Sequence')
-    perc_complete = fields.Float(string='% Complete', (3, 2))  # float precision - (total, decimals)
+    perc_complete = fields.Float('% Complete', (3, 2))  # float precision - (total, decimals)
 
     #Date fields:
     date_effective = fields.Date(string='Effective Date')
@@ -34,3 +37,14 @@ class Stage(models.Model):
     #Other fields:
     fold = fields.Boolean(string='Folded?')
     image = fields.Binary(string='Image')
+
+
+class TodoTask(models.Model):
+    _inherit = 'todo.task'
+
+    stage_id = fields.Many2one(
+        comodel_name='todo.task.stage',
+        string='Stage')
+    tag_ids = fields.Many2many(
+        comodel_name='todo.task.tag',
+        string='Tags')
