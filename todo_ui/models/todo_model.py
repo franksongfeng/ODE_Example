@@ -68,3 +68,6 @@ class TodoTask(models.Model):
     tag_ids = fields.Many2many(
         comodel_name='todo.task.tag',
         string='Tags')
+    stage_state = fields.Selection(
+        related='stage_id.state',
+        string='Stage State')
