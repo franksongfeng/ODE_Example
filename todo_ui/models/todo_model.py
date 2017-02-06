@@ -71,3 +71,11 @@ class TodoTask(models.Model):
     stage_state = fields.Selection(
         related='stage_id.state',
         string='Stage State')
+    stage_fold = fields.Boolean(
+        'Stage Folded?',
+        compute='_compute_stage_fold')
+
+    @api.one
+    @api.depends('stage_id.fold')
+    def _compute_stage_fold(self):
+        self.stage_fold = self.stage_id.fold
