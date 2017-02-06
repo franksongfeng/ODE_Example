@@ -22,7 +22,10 @@ class Tag(models.Model):
     parent_right = fields.Integer(
         string='Parent Right',
         index=True)
-
+    child_ids = fields.One2many(
+        comodel_name='todo.task.tag',
+        inverse_name='parent_id',
+        string='Child Tags')
 
 class Stage(models.Model):
     _name = 'todo.task.stage'
