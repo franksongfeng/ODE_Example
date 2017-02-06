@@ -6,11 +6,22 @@ from openerp import fields, models, api
 
 class Tag(models.Model):
     _name = 'todo.task.tag'
+    _parent_store = True
 
     name = fields.Char(string='Name', size=40, tanslate=True)
     task_ids = fields.Many2many(
         comodel_name='todo.task',
         string='Tasks')
+    parent_id = fields.Many2one(
+        comodel_name='todo.task.tag',
+        string='Parent Tag',
+        ondelete='restrict')
+    parent_left = fields.Integer(
+        string='Parent Left',
+        index=True)
+    parent_right = fields.Integer(
+        string='Parent Right',
+        index=True)
 
 
 class Stage(models.Model):
