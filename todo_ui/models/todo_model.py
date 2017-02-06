@@ -2,7 +2,7 @@
 # @ 2016 Elico Corp (https://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 from openerp import fields, models, api
-
+from openerp.exceptions import ValidationError
 
 class Tag(models.Model):
     _name = 'todo.task.tag'
@@ -73,9 +73,31 @@ class TodoTask(models.Model):
         string='Stage State')
     stage_fold = fields.Boolean(
         'Stage Folded?',
-        compute='_compute_stage_fold')
+        compute='_compute_stage_fold',
+        search='_search_stage_fold',
+        inverse='_write_stage_fold')
 
     @api.one
     @api.depends('stage_id.fold')
     def _compute_stage_fold(self):
         self.stage_fold = self.stage_id.fold
+
+    def _search_stage_fold(self, operator, value):
+        return [('stage_id.fold', operator, value)]
+
+    def _write_stage_fold(self):
+        self.stage_id.fold = self.stage_fold
+
+    @api.one
+    @api.constrains('name')
+    def _check_name_size(self):
+        if len(self.name) < 5:
+            raise ValidationError('Must have 5 chars!')
+
+    _sql_constraints = [
+        (
+            'todo_task_name_uniq',
+            'UNIQUE (name, user_id, active)',
+            'Task title must be unique!'
+        )
+    ]
