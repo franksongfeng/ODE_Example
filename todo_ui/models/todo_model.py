@@ -77,6 +77,10 @@ class TodoTask(models.Model):
         search='_search_stage_fold',
         inverse='_write_stage_fold')
 
+    docs = fields.Html(
+        related='stage_id.docs',
+        string='Documentation')
+
     # Referencing fields
     refers_to = fields.Reference(
         [('res.user', 'User'), ('res.partner', 'Partner')],

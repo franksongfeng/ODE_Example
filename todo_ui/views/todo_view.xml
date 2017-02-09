@@ -48,6 +48,14 @@
                                 <field name="tag_ids" widget="many2many_tags"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page string="Whiteboard" name="whiteboard">
+                            <field name="docs" />
+                            </page>
+                            <page name="second_page">
+                            <!-- Second page content -->
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"
