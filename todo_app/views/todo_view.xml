@@ -54,21 +54,21 @@
         </record>
 
         <!-- Action to open To-do Taks list -->
-        <act_window 
+        <act_window
             id="action_todo_task"
             name="To-do Task"
             res_model="todo.task"
-            view_mode="tree,form" 
+            view_mode="tree,form"
         />
-            
+
         <!-- Menu item to open To-do Taks list -->
-        <menuitem 
+        <menuitem
             id="menu_todo_task"
             name="To-Do Tasks"
             web_icon="todo_app,static/description/icon.png"
             parent="mail.mail_channel_menu_root_chat"
             sequence="20"
-            action="action_todo_task" 
+            action="action_todo_task"
         />
 
     </data>
