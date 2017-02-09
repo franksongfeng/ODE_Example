@@ -8,11 +8,11 @@ class TodoTask(models.Model):
     _name = 'todo.task'
     _inherit = ['todo.task', 'mail.thread']
 
-    user_id =fields.Many2one(
+    user_id = fields.Many2one(
         comodel_name='res.users',
         string='Responsible'
     )
-    date_deadline=fields.Date(
+    date_deadline = fields.Date(
         string='Deadline'
     )
     name = fields.Char(
@@ -21,8 +21,6 @@ class TodoTask(models.Model):
 
     @api.multi
     def do_clear_done(self):
-        import pdb
-        pdb.set_trace()
         domain = [
             '&',
             ('is_done', '=', True),

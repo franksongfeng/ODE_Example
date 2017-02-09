@@ -77,6 +77,23 @@ class TodoTask(models.Model):
         search='_search_stage_fold',
         inverse='_write_stage_fold')
 
+    # Referencing fields
+    refers_to = fields.Reference(
+        [('res.user', 'User'), ('res.partner', 'Partner')],
+        'Refers to')
+
+    # Smart buttons
+    user_todo_count = fields.Integer(
+        'User To-Do Count',
+        compute='compute_user_todo_count')
+
+    @api.one
+    def compute_user_todo_count(self):
+        import pdb
+        pdb.set_trace()
+        self.user_todo_count = self.search_count(
+            [('user_id', '=', self.user_id.id)])
+
     @api.one
     @api.depends('stage_id.fold')
     def _compute_stage_fold(self):
@@ -91,6 +108,8 @@ class TodoTask(models.Model):
     @api.one
     @api.constrains('name')
     def _check_name_size(self):
+        import pdb
+        pdb.set_trace()
         if len(self.name) < 5:
             raise ValidationError('Must have 5 chars!')
 
