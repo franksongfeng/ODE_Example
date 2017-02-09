@@ -4,6 +4,7 @@
         <record id="view_form_todo_task_ui" model="ir.ui.view">
             <field name="name">view_form_todo_task_ui</field>
             <field name="model">todo.task</field>
+            <field name="inherit_id" ref="todo_user.view_form_todo_task_inherited"/>
             <field name="arch" type="xml">
                 <form>
                     <header>
