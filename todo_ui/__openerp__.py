@@ -6,7 +6,9 @@
     'version': '9.0.1.0.9',
     'website': 'www.elico-corp.com',
     'author': 'Frank Song',
-    'depends': ['todo_app'],
+    'depends': [
+    	'todo_user',
+    ],
     'data': [
         'views/todo_view.xml',
     ],
