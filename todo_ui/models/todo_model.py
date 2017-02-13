@@ -83,8 +83,8 @@ class TodoTask(models.Model):
 
     # Referencing fields
     refers_to = fields.Reference(
-        [('res.user', 'User'), ('res.partner', 'Partner')],
-        'Refers to')
+        selection=[('res.user', 'User'), ('res.partner', 'Partner')],
+        string='Refers to')
 
     # Smart buttons
     user_todo_count = fields.Integer(
@@ -93,8 +93,6 @@ class TodoTask(models.Model):
 
     @api.one
     def compute_user_todo_count(self):
-        import pdb
-        pdb.set_trace()
         self.user_todo_count = self.search_count(
             [('user_id', '=', self.user_id.id)])
 
