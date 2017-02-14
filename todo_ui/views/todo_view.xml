@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
         <record id="view_form_todo_task_ui" model="ir.ui.view">
             <field name="name">view_form_todo_task_ui</field>
             <field name="model">todo.task</field>
