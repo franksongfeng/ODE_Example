@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+
+        # TTT Groups Title
+        <record id="module_totest_task" model="ir.module.category">
+            <field name="name">Totest Task Access</field>
+            <field name="description">ToTest Access Groups</field>
+            <field name="sequence">1</field>
+        </record>
+
+        # TTT Group 1: User
+        <record id="group_test_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id"
+                ref="module_totest_task"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="access_comm_totest_task_user" model="ir.model.access">
+            <field name="name">totest.user</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="group_id" ref="group_test_user"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="access_cond_totest_task_user" model="ir.rule">
+            <field name="name">totest.task</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="groups" eval="[(4,[ref('group_test_user')])]"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+        </record>
+
+
+        # TTT Group 2: Manager
+        <record id="group_test_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id"
+                ref="module_totest_task"/>
+            <field name="implied_ids" eval="[(4, ref('group_test_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="access_comm_totest_task_manager" model="ir.model.access">
+            <field name="name">totest.manager</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="group_id" ref="group_test_manager"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="access_cond_totest_task_manager" model="ir.rule">
+            <field name="name">totest.task</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="groups" eval="[(4,[ref('group_test_manager')])]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        # TTT Group 3: Operator
+        <record id="group_test_operator" model="res.groups">
+            <field name="name">Operator</field>
+            <field name="category_id"
+                ref="module_totest_task"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="access_comm_totest_task_operator" model="ir.model.access">
+            <field name="name">totest.opertor</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="group_id" ref="group_test_operator"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="access_cond_totest_task_operator" model="ir.rule">
+            <field name="name">totest.task</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="groups" eval="[(4,[ref('group_test_operator')])]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+    </data>
+</openerp>

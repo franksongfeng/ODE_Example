@@ -14,7 +14,7 @@
             name="To-Test Tasks"
             web_icon="totest_app,static/description/icon.png"
             parent="mail.mail_channel_menu_root_chat"
-            sequence="20"
+            sequence="21"
             action="action_totest_task"
         />
 
