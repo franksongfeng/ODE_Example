@@ -1,7 +1,7 @@
 {
     'name': 'To-Test Application',
     'category': 'Test',
-    'summary': 'Example in the book ODE',
+    'summary': 'Example to test single feature',
     'version': '9.0.0.0.1',
     'website': 'www.elico-corp.com',
     'author': 'Frank Song',
