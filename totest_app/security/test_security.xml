@@ -4,9 +4,9 @@
 
         # TTT Groups Title
         <record id="module_totest_task" model="ir.module.category">
-            <field name="name">Totest Task Access</field>
+            <field name="name">TTT</field>
             <field name="description">ToTest Access Groups</field>
-            <field name="sequence">1</field>
+            <field name="sequence">10</field>
         </record>
 
         # TTT Group 1: User
@@ -65,8 +65,7 @@
         # TTT Group 3: Operator
         <record id="group_test_operator" model="res.groups">
             <field name="name">Operator</field>
-            <field name="category_id"
-                ref="module_totest_task"/>
+
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
@@ -86,6 +85,32 @@
             <field name="model_id" ref="model_totest_task"/>
             <field name="groups" eval="[(4,[ref('group_test_operator')])]"/>
             <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        # TTT Group 4: LessUser
+        <record id="group_test_luser" model="res.groups">
+            <field name="name">Less User</field>
+            <field name="category_id"
+                ref="module_totest_task"/>
+            <field name="implied_ids" eval="[(4, ref('group_test_user'))]"/>
+            <field name="users" eval="[(5, True, True)]"/>
+        </record>
+
+        <record id="access_comm_totest_task_user" model="ir.model.access">
+            <field name="name">totest.user</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="group_id" ref="group_test_luser"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="access_cond_totest_task_user" model="ir.rule">
+            <field name="name">totest.task</field>
+            <field name="model_id" ref="model_totest_task"/>
+            <field name="groups" eval="[(4,[ref('group_test_luser')])]"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
         </record>
 
     </data>

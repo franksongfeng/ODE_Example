@@ -8,6 +8,7 @@ class TotestTask(models.Model):
     name = fields.Char(string='Description', required=True, size=64)
     is_done = fields.Boolean(string='Done?')
     active = fields.Boolean(string='Active?', default=True)
+    number = fields.Integer(string='No.')
 
     @api.one
     def do_toggle_done(self):
